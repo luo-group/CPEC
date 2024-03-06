@@ -1,0 +1,14 @@
+data/esm_data
+data/distance_map
+data/pretrained
+dist/
+esm/
+build/
+model/
+gmm_test/
+src/CLEAN/__pycache__/
+.DS_STORE
+
+# Ignore large models that have been fetched manually
+*.pt
+

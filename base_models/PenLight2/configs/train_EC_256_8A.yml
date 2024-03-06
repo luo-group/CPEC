@@ -1,0 +1,37 @@
+data:
+  data_file: data/cath_splits/train_0.json
+  val_data_file: data/cath_splits/valid_0.json
+  test_data_fil: data/cath_splits/test_0.json
+  topk: 30
+  num_rbf: 16
+  num_positional_embeddings: 16
+  graph_type: gat
+  edge_type: radius # topk or radius
+  edge_threshold: 8.0
+  seq_emb: esm
+  scalar_only: False
+  ground_truth_file: data/ec-data/pdb2ec_multilabel.txt
+  n_classes: 4
+
+model:
+  emb_file: data/ec-data/ec_esm1b.h5
+  in_channels: 1280
+  hidden_channels: [128, 512]
+  out_dim: 256
+  edge_dim: 35
+  heads: [8, 1]
+  dropout: 0.5
+  append_scalar_features: False
+
+train:
+  seed: 42
+  batch_size: 32
+  num_epochs: 1000
+  lr: 1.e-4
+  weight_decay: 1.e-4
+  loss: TripletLoss
+  batch_hard: True
+  exclude_easy: False
+  margin: null
+  patience: 20
+  early_stop_threshold: 20

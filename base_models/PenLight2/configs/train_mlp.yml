@@ -1,0 +1,23 @@
+data:
+  train_data_file: data/mlp_data/train_data.pt
+  valid_data_file: data/mlp_data/valid_data.pt
+  test_data_file: data/mlp_data/test95_data.pt
+  label_file: data/mlp_data/all_labels.json
+
+model:
+  model_type: MLPModel
+  input_dim: 1280
+  num_layers: 3
+  hidden_dims: [1000, 512]
+  out_dim: null
+  dropout: 0.5
+
+train:
+  seed: 0
+  batch_size: 512
+  num_epochs: 1000
+  lr: 1.e-3
+  weight_decay: 1.e-4
+  patience: 20
+  loss: CrossEntropyLoss
+  optimizer: Adam
