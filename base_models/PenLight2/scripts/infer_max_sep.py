@@ -6,6 +6,8 @@ import numpy as np
 import os, json
 from sklearn.preprocessing import MultiLabelBinarizer
 from sklearn.metrics import f1_score, precision_score, recall_score, accuracy_score
+import argparse
+
 
 def n_smallest(data, n):
     if not isinstance(data, torch.Tensor):
@@ -57,8 +59,18 @@ def batch_max_sep(smallest_k_dist, smallest_k_indices, ecs_lookup):
     
     return pred_ecs, distances
 
-def main(seed=0):
-    log_dir = f'logs_cath_all_splits/train_EC_cath_{seed}'
+def get_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--model_dir', type=str)
+    parser.add_argument('--test_data', type=str)
+    
+    args = parser.parse_args()
+    return args
+
+def main():
+    args = get_args()
+    # log_dir = f'logs_cath_all_splits/train_EC_cath_{seed}'
+    log_dir = args.model_dir
     dist_mat = torch.load(os.path.join(log_dir, 'distance_test_ec_cluster.pt'))
     with open(os.path.join(log_dir, 'ec_cluster_list.json')) as f:
         ec_cluster_list = json.load(f)
@@ -67,7 +79,7 @@ def main(seed=0):
     smallest_k_dist, smallest_k_indices = n_smallest(dist_mat, n=10)
     pred_ecs, distances = batch_max_sep(smallest_k_dist, smallest_k_indices, ec_cluster_list)
     print(pred_ecs[:5], len(pred_ecs))
-    with open(f'data/cath_all_splits/test_{seed}.json') as f:
+    with open(args.test_data) as f:
         test_data = json.load(f)
     test_labels = [d['ec'] for d in test_data.values()]
     print(test_labels[:5], len(test_labels))
@@ -87,6 +99,7 @@ def main(seed=0):
             f.write('\n')
     
 if __name__ == '__main__':
-    for i in range(5):
-        print(f'Running seed {i}')
-        main(i)
+    main()
+    # for i in range(5):
+    #     print(f'Running seed {i}')
+    #     main(i)

@@ -1,0 +1,9 @@
+torch
+torch_geometric
+torch_cluster
+torch_scatter
+biopython
+sklearn
+matplotlib
+seaborn
+numpy
