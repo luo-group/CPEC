@@ -30,8 +30,10 @@ pip install -r requirements.txt
 ### (Optional) Base model implementation
 
 #### PenLight2
+We provide the implementation of PenLight2 in [base_models/PenLight2](https://github.com/luo-group/CPEC/tree/base_models/base_models/PenLight2).
 
 #### CLEAN
+We provide the implementation of CLEAN in [base_models/CLEAN](https://github.com/luo-group/CPEC/tree/base_models/base_models/CLEAN).
 
 #### Other base models
 
