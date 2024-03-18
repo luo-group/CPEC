@@ -85,6 +85,7 @@ sudo docker run -it -v ./:/root/.cache/torch/hub/checkpoints moleculemaker/clean
 The output file will be generated under results/inputs directory with the same name as the input file.   
 
 #### Other base models
+The user can also implement customized base models for FDR-controlled EC number prediction as long as the model can output a probability for each EC class.
 
 ### False Discovery Rate (FDR)-controlled EC number prediction
 
