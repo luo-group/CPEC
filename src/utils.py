@@ -92,3 +92,16 @@ def predict(prob, labels, lambda_hat, idx2prot, idx2ec):
         df = pd.concat([df, tmp_df], ignore_index=True)
 
     return average_risk, precision, recall, ndcg, df
+
+
+def cal_ob_fdr(gts, preds):
+
+    gts = set(gts)
+    preds = set(preds)
+
+    tp = len(gts.intersection(preds))
+
+    if len(preds) == 0:
+        return 0
+    else:
+        return 1 - tp/len(preds)
